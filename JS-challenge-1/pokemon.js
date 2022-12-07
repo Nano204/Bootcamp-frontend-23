@@ -1,3 +1,5 @@
+const { Console } = require("console");
+
 class Pokemon {
   constructor(name, types, evolutionChain, evolutionStage, attacks, generation) {
     this._name = name;
@@ -9,8 +11,8 @@ class Pokemon {
   }
 
   attack(attackNumber) {
-    if (_this.attacks[attackNumber]) {
-      return console.log(`${this._name} is using ${_this.attack[1]}`);
+    if (this._attacks[attackNumber]) {
+      return console.log(`${this._name} is using ${this._attacks[1]}`);
     } else {
       return console.log("Invalid option");
     }
@@ -18,12 +20,14 @@ class Pokemon {
 
   evolve() {
     ++this._evolutionStage;
-    this._name = this._evolutionChain[this._evolutionStage];
+    const evolution = this._evolutionChain[this._evolutionStage];
+    console.log(`${this._name} is evolving to ${evolution}`);
+    this._name = evolution;
   }
 
-  get info() {
-    console.log("Pokemon name:", this._name);
-    console.log("Pokemon types:", this._types);
+  info() {
+    console.log("Pokemon Name:", this._name);
+    console.log("Pokemon Types:", this._types);
     console.log("Pokemon Evolution Chain:", this._evolutionChain);
     console.log("Pokemon Evolution Stage:", this._evolutionStage);
     console.log("Pokemon Attacks:", this._attacks);
@@ -73,12 +77,17 @@ const pokemon1 = new Pokemon(
   "Gastly",
   ["Poison", "Ghost"],
   ["Gastly", "Haunter", "Gengar"],
-  1,
+  0,
   ["Lick", "Dark Pulse"],
   1
 );
+console.log("%%%%%% First pokemon info %%%%%%")
+pokemon1.info();
+console.log(pokemon1.attacks);
+console.log((pokemon1.attacks = [...pokemon1.attacks, "Shadow ball"]));
+pokemon1.attack(2);
+console.log()
+console.log("%%%%%% Evolution pokemon info %%%%%%")
+pokemon1.evolve();
+pokemon1.info();
 
-// console.log(pokemon1.info())
-// console.log(pokemon1.attacks())
-// console.log(pokemon1.attacks()= [...pokemon1.attacks(), "Shadow ball"])
-// console.log(pokemon1.evolve())

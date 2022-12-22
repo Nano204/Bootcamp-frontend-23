@@ -1,0 +1,41 @@
+.cardsContainer {
+  border: blue 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardBound {
+  border: grey 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.cardTitleMark {
+  border: grey 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardStarsSpace {
+  border: grey 1px solid;
+  display: flex;
+  justify-content: end;
+}
+
+.cardImage {
+  border: grey 1px solid;
+  display: flex;
+}
+
+.cardDetailsSpace {
+  border: grey 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardStats {
+  border: grey 1px solid;
+  display: flex;
+  justify-content: end;
+}

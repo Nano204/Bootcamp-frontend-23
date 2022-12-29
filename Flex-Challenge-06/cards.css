@@ -15,19 +15,19 @@ html {
 
 .cardsContainer {
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
   border: blue 1px solid;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   row-gap: 20px;
-  column-gap: 12px;
+  column-gap: 20px;
+  justify-content: center;
 }
 
 .cardBound {
   border: var(--border) 5px solid;
   background-color: var(--background);
+  flex: 0.2;
   display: flex;
   flex-direction: column;
   column-gap: 5px;
@@ -39,7 +39,7 @@ html {
 
 .cardTitleMark {
   padding: 5px;
-  display: flex;
+  display: inherit;
   border: outset 3px;
   justify-content: space-between;
   color: var(--texts);
@@ -52,12 +52,12 @@ html {
 }
 
 .cardStarsSpace {
-  display: flex;
+  display: inherit;
   justify-content: end;
 }
 
 .cardImage {
-  display: flex;
+  display: inherit;
   flex-basis: 3;
   justify-content: center;
   margin-bottom: 10px;
@@ -66,8 +66,7 @@ html {
 .mainImage {
   border: var(--imageBorder) 5px solid;
   box-shadow: #292e3a 2px 2px 10px;
-  min-width: 50px;
-  max-width: 300px;
+  width: 400px;
 }
 
 .cardDetailsSpace {
@@ -75,7 +74,7 @@ html {
   background-color: var(--decriptionBackground);
   color: var(--texts);
   padding: 5px;
-  display: flex;
+  display: inherit;
   flex-direction: column;
 }
 
@@ -91,7 +90,7 @@ html {
 
 .cardStats {
   border-top: var(--texts) solid 2px;
-  display: flex;
+  display: inherit;
   justify-content: end;
   column-gap: 10px;
   font-weight: bold;

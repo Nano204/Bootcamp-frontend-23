@@ -42,12 +42,14 @@ function cardHtml(card) {
   cardHtml.innerHTML = `
         <div class="cardTitleMark">
           <p>${title}</p>
-          <img src="images/EARTH.png" alt="Attribute image" style="max-width: 15%";/>
+          <div>
+            <img src="images/EARTH.png" alt="Attribute image";/>
+          </div>
         </div>
         <div class="cardStarsSpace">
         ${starsHtml(stars)}
         </div>
-        <div class="cardImage">
+        <div class="cardImageContainer">
           <img class="mainImage" src=${image} alt="${image} image" />
         </div>
         <div class="cardDetailsSpace">
@@ -68,7 +70,7 @@ function cardHtml(card) {
 function starsHtml(stars) {
   const starsHtmlArray = [];
   for (let index = 0; index < stars; index++) {
-    const star = `<img src="images/Starball_Red.svg.png" alt="Star image" style="max-width: 5%; margin: 2px" />`;
+    const star = `<img class="star" src="images/Starball_Red.svg.png" alt="Star image"/>`;
     starsHtmlArray.push(star);
   }
   const starsHtml = starsHtmlArray.join("");
@@ -77,10 +79,8 @@ function starsHtml(stars) {
 
 function renderCards(cardsId, player) {
   cardsId.map((cardId, index) => {
-    const cardsSpace = document.querySelector(`.mainZone`);
+    const cardsSpace = document.getElementById(`player${player}_zone${index}`);
     getFromAPI(cardId).then((response) => {
-      response.style.gridArea = `2/${index + 1}`;
-      response.classList.add = "zone";
       cardsSpace.append(response);
     });
   });
@@ -88,5 +88,5 @@ function renderCards(cardsId, player) {
 
 window.onload = () => {
   renderCards(cardsIdP1, 1);
-  // renderCards(cardsIdP2, 2);
+  renderCards(cardsIdP2, 2);
 };

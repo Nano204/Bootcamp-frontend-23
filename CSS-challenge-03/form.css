@@ -1,0 +1,12 @@
+form {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  form {
+    flex-direction: column;
+  }
+  #button {
+    align-self: flex-end;
+  }
+}

@@ -1,37 +1,19 @@
-let PI: number;
-let age: number;
-let PersonName: string;
-let maybe: number | string;
-let rol: role;
-type role = "Admin" | "User";
+//Types & Interfaces
+type Role = "Admin" | "User";
 
-rol = "User";
-maybe = 25;
-PI = Math.PI;
-PersonName = "Alexander";
-age = 24;
-maybe = "something else";
-rol = "Admin";
-
-type person = {
+type Person = {
     name: string;
     age: number;
-    rol: role;
+    rol: Role;
 };
 
-const person: any = {
-    name: PersonName,
-    age,
-    rol, // can be Admin or User
-};
+type PokemonType = { name: string; url: string };
+type TypesList = { slot: number; type: PokemonType }[];
 
-type pokemonType = { name: string; url: string };
-type typesList = { slot: number; type: pokemonType }[];
+type PokemonMove = { name: string; url: string };
+type MovesList = { move: PokemonMove }[];
 
-type pokemonMove = { name: string; url: string };
-type movesList = { move: pokemonMove }[];
-
-type spritesList = {
+type SpritesList = {
     back_default: string;
     back_female: string;
     back_shiny: string;
@@ -48,10 +30,33 @@ interface Pokemon {
     height: number;
     weight: number;
     base_experience?: number;
-    types: typesList;
-    moves: movesList;
-    sprites: spritesList;
+    types: TypesList;
+    moves: MovesList;
+    sprites: SpritesList;
 }
+
+//Code
+let PI: number;
+let age: number;
+let PersonName: string;
+let maybe: number | string;
+let rol: Role;
+
+rol = "User";
+maybe = 25;
+PI = Math.PI;
+PersonName = "Alexander";
+age = 24;
+maybe = "something else";
+rol = "Admin";
+
+
+const person: Person = {
+    name: PersonName,
+    age,
+    rol, // can be Admin or User
+};
+
 
 const pikachu: Pokemon = {
     id: 25,

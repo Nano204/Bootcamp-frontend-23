@@ -5,12 +5,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 function checkPowerPoint(target, propertyKey, descriptor) {
-    descriptor.value = function () {
+    var method = descriptor.value;
+    descriptor.value = function (move) {
         if (this.ppAvailable == 0) {
             console.log("".concat(this.name, " has no PP enough to use ").concat(move === null || move === void 0 ? void 0 : move.name, "!"));
+            return;
         }
+        console.log(method);
+        method.apply(this, [move]);
     };
-    return descriptor;
 }
 var Pokemon = /** @class */ (function () {
     function Pokemon(name, ppAvailable) {

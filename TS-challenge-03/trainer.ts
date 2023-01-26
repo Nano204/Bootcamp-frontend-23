@@ -19,15 +19,28 @@ export class Trainer {
         if (pokemonsInBagIds) this.pokemonsInBagIds = pokemonsInBagIds;
     }
 
-    async getPokemon(id: number): Promise<Pokemon> {
-        return new Pokemon("Pikachu", 10);
+    getPokemon(id: number) {
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        const pokemon = fetch(url)
+            .then((response) => {
+                if (response.status == 200) {
+                    return response.json();
+                } else {
+                    throw new Error(response.statusText);
+                }
+            })
+            .then((response) => {
+                const pokemon = new Pokemon(response.name, 10);
+                return pokemon;
+            });
+        return pokemon;
     }
 
-    getPokemonTeam() {
-        console.log(this.pokemonsInBagIds);
+    screenPokemonTeam() {
         const pokemonTeam = this.pokemonsInBagIds.map((id) => this.getPokemon(id));
+        Promise.all(pokemonTeam).then((response) => console.log(response));
     }
 }
 
 const trainer = new Trainer("Ash");
-trainer.getPokemonTeam();
+trainer.screenPokemonTeam();

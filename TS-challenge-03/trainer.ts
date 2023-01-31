@@ -14,9 +14,11 @@ function getRandomPokemonIds(target: any) {
 export class Trainer {
     name: string;
     pokemonsInBagIds: number[];
+    pokemonTeam: Pokemon[];
     constructor(name: string, pokemonsInBagIds?: number[]) {
         this.name = name;
-        if (pokemonsInBagIds) this.pokemonsInBagIds = pokemonsInBagIds;
+        if (pokemonsInBagIds && pokemonsInBagIds.length)
+            this.pokemonsInBagIds = pokemonsInBagIds;
     }
 
     getPokemon(id: number) {
@@ -38,9 +40,16 @@ export class Trainer {
 
     screenPokemonTeam() {
         const pokemonTeam = this.pokemonsInBagIds.map((id) => this.getPokemon(id));
-        Promise.all(pokemonTeam).then((response) => console.log(response));
+        Promise.all(pokemonTeam).then((response) => {
+            console.log(`${this.name}'s team:`);
+            console.log(response);
+            console.log();
+        });
     }
 }
 
-const trainer = new Trainer("Ash");
+const trainer = new Trainer("Ash", [25, 6, 41]);
+const randomTrainer = new Trainer("Rival", []);
+console.clear();
 trainer.screenPokemonTeam();
+randomTrainer.screenPokemonTeam();

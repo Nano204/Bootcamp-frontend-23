@@ -20,7 +20,7 @@ function getRandomPokemonIds(target) {
 var Trainer = /** @class */ (function () {
     function Trainer(name, pokemonsInBagIds) {
         this.name = name;
-        if (pokemonsInBagIds)
+        if (pokemonsInBagIds && pokemonsInBagIds.length)
             this.pokemonsInBagIds = pokemonsInBagIds;
     }
     Trainer.prototype.getPokemon = function (id) {
@@ -43,7 +43,11 @@ var Trainer = /** @class */ (function () {
     Trainer.prototype.screenPokemonTeam = function () {
         var _this = this;
         var pokemonTeam = this.pokemonsInBagIds.map(function (id) { return _this.getPokemon(id); });
-        Promise.all(pokemonTeam).then(function (response) { return console.log(response); });
+        Promise.all(pokemonTeam).then(function (response) {
+            console.log("".concat(_this.name, "'s team:"));
+            console.log(response);
+            console.log();
+        });
     };
     Trainer = __decorate([
         getRandomPokemonIds
@@ -51,5 +55,8 @@ var Trainer = /** @class */ (function () {
     return Trainer;
 }());
 exports.Trainer = Trainer;
-var trainer = new Trainer("Ash");
+var trainer = new Trainer("Ash", [25, 6, 41]);
+var randomTrainer = new Trainer("Rival", []);
+console.clear();
 trainer.screenPokemonTeam();
+randomTrainer.screenPokemonTeam();

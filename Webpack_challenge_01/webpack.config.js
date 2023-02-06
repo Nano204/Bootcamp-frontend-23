@@ -1,7 +1,18 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { template } = require("lodash");
 const path = require("path");
 
 const config = {
     entry: "./src/index.js",
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+    },
+    plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
 };
 
 module.exports = (env, argv) => {

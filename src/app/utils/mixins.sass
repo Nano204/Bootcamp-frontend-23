@@ -1,0 +1,29 @@
+@mixin no-margin
+    margin: 0
+    padding: 0
+
+@mixin extra-big-font
+    @include no-margin
+    font: 96px Cantarell bold
+
+@mixin bigger-font
+    @include no-margin
+    font: 36px Cantarell
+    font-weight: bold
+
+@mixin big-font
+    @include no-margin
+    font: 30px Cantarell
+    font-weight: bold
+
+@mixin medium-font
+    @include no-margin
+    font: 24px Cantarell
+    font-weight: bold
+
+@mixin regular-font
+    @include no-margin
+    font: 20px Cantarell
+
+@mixin shadowed
+    box-shadow: 0px 4px 5px #00000055

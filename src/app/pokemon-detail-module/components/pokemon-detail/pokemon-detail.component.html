@@ -1,0 +1,19 @@
+<div class="pokemon-detail">
+  <div class="pokemon-info-section"></div>
+  <div
+    class="pokemon-image-section"
+    [ngClass]="'background-type-' + types[0].toLowerCase()"
+  >
+    <div class="dots"></div>
+    <img
+      class="type-shadow"
+      [src]="'../../assets/types/' + types[0] + '.svg'"
+      alt=""
+    />
+    <img class="pokemon-art" [src]="image" [alt]="image" />
+    <div class="buttons">
+      <button class="previous">Previous #898</button>
+      <button class="next">Next #002</button>
+    </div>
+  </div>
+</div>

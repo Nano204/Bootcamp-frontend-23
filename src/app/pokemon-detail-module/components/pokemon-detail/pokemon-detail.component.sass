@@ -1,0 +1,47 @@
+@import "../../../utils/mixins"
+@import "../../../utils/variables"
+
+.pokemon-detail
+    position: absolute
+    height: 100vh
+    width: 100vw
+    z-index: 0
+    top: 0
+    display: grid
+    grid-template-columns: 50% 50%
+    .pokemon-image-section
+        padding-top: 5%
+        justify-content: center
+        display: flex
+        flex-direction: column
+        align-items: center
+        .dots
+            background: linear-gradient(180deg, black 0%, transparent 100%)
+            width: 60%
+            margin-bottom: 15%
+            aspect-ratio: 40/9
+        .type-shadow
+            width: 40%
+            margin: -20%
+            transform: translate(0%, 15%)
+        .pokemon-art
+            position: relative
+            margin-top: 5%
+            z-index: 2
+            width: 40%
+        .buttons
+            display: grid
+            grid-template-columns: 50% 50%
+            width: 60%
+            button
+                @include shadowed
+                @include regular-font
+                margin: 5px
+                padding: 10px 0px
+                border-color: transparent
+                border-radius: 5px
+            .previous
+                color: $text-paragraph
+            .next
+                background-color: $text-title-red
+                color: $background-white

@@ -1,0 +1,12 @@
+.pokemon-list
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    justify-items: stretch
+    margin: 40px 144px
+    overflow: hidden
+    .pokemon-card
+        margin: 10px 2%
+    @media screen and (max-width: 1200px)
+        grid-template-columns: 1fr 1fr
+    @media screen and (max-width: 920px)
+        grid-template-columns: 1fr

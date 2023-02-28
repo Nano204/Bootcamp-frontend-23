@@ -1,0 +1,23 @@
+@import "../../../../utils/mixins"
+@import "../../../../utils/variables"
+
+.search-bar-section
+    @include shadowed
+    z-index: 3
+    background-color:$text-title-red
+    display: grid
+    grid-template-columns: auto 50vw auto
+    grid-template-rows: 80px auto 100px
+
+.search-bar
+    grid-column: 2
+    grid-row: 2
+
+p
+    font-family: Cantarell
+    font-size: 24px
+    color: $background-white
+    grid-column: 2
+    grid-row: 3
+    justify-self: center
+    align-self: top

@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-import { PokemonListModule } from './pokemon-list-module/pokemon-list.module';
-import { SharedModule } from './shared-module/shared.modules';
-import { PokemonDetailModule } from './pokemon-detail-module/pokemon-detail.module';
+import { SharedModule } from './modules/shared-module/shared.modules';
+import { PokemonModule } from './modules/pokemon-module/pokemon-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +12,8 @@ import { PokemonDetailModule } from './pokemon-detail-module/pokemon-detail.modu
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    PokemonListModule,
+    PokemonModule,
     SharedModule,
-    PokemonDetailModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

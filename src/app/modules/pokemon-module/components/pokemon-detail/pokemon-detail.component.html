@@ -1,0 +1,35 @@
+<div class="pokemon-detail">
+  <div class="pokemon-info-section">
+    <div class="back-arrow"></div>
+    <div class="number">
+      #
+      <span>
+        {{ id }}
+      </span>
+    </div>
+    <p class="name">{{ name }}</p>
+    <p class="generation">Generation</p>
+    <div class="types-holder">
+      <interactive-type-tag
+        class="type-tag"
+        *ngFor="let type of types"
+        [type]="type"
+      ></interactive-type-tag>
+    </div>
+    <div class="menu">
+      <span class="menu-option">Pokedex Data</span>
+      <span class="menu-option">Stats</span>
+      <span class="menu-option">Evolutions</span>
+    </div>
+    <div class="screener"></div>
+  </div>
+  <div class="pokemon-image-section" [ngClass]="primaryTypeBgColor">
+    <div class="dots"></div>
+    <img class="type-shadow" [src]="primaryTypeImage" alt="" />
+    <img class="pokemon-art" [src]="image" [alt]="image" />
+    <div class="buttons">
+      <button class="previous">Previous #898</button>
+      <button class="next">Next #002</button>
+    </div>
+  </div>
+</div>

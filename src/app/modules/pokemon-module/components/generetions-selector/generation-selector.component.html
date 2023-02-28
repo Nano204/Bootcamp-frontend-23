@@ -1,0 +1,10 @@
+<div class="generation-buttons-container">
+  <button
+    class="generation-button"
+    *ngFor="let generation of generations; let index = index"
+    (click)="searchGeneration(index)"
+  >
+    {{ generation }}
+  </button>
+  <button class="generation-button" (click)="clearGenerationSelect()">All</button>
+</div>

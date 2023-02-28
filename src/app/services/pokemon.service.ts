@@ -1,23 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PokemonResponse, Reference } from '../utils/constants/types';
 
 @Injectable()
 export class PokemonService {
+  generationSelectEvent = new EventEmitter<number>();
+  generationClearEvent = new EventEmitter<undefined>();
+
   constructor(private http: HttpClient) {}
 
-  getPokemonList(limit?: number) {
+  getPokemonReferenceList(limit?: number): Observable<Reference[]> {
     const pokemonList = this.http.get(
       `https://pokeapi.co/api/v2/pokemon/?limit=${limit || 25}`
     );
-    return pokemonList;
+    return pokemonList as Observable<Reference[]>;
   }
 
-  getPokemonInfo(url: string) {
-    return this.http.get(url);
+  getPokemonInfo(url: string): Observable<PokemonResponse> {
+    return this.http.get(url) as Observable<PokemonResponse>;
   }
 
-  getPokemonListByGeneration(generation: string) {
-    const pokemonList = `https://pokeapi.co/api/v2/generation/${generation}`;
-    return this.http.get(pokemonList);
+  getGenerationInfo(generation: number) {
+    const generationInfo = `https://pokeapi.co/api/v2/generation/${generation}`;
+    return this.http.get(generationInfo) as Observable<{
+      pokemon_species: Reference[];
+    }>;
   }
 }

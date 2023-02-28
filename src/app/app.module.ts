@@ -10,7 +10,6 @@ import { PokemonModule } from './modules/pokemon-module/pokemon-list.module';
   declarations: [AppComponent],
   imports: [
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     PokemonModule,
     SharedModule,

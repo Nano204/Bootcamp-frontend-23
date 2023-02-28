@@ -1,7 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { PokemonResponse, Reference, Type } from 'src/app/utils/types/types';
+import { PokemonResponse, Type } from 'src/app/utils/constants/types';
 
 @Component({
   selector: 'pokemon-card',
@@ -9,9 +14,8 @@ import { PokemonResponse, Reference, Type } from 'src/app/utils/types/types';
   styleUrls: ['./pokemon-card.component.sass'],
 })
 export class PokemonCardComponent implements OnInit {
-  @Input() pokemon!: Reference;
+  @Input() pokemon!: PokemonResponse;
   url!: string;
-  pokemonResponse!: PokemonResponse;
   id?: string;
   types: string[] = [];
   primaryTypeBgColor?: string;
@@ -21,30 +25,27 @@ export class PokemonCardComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.url = this.pokemon.url;
-    this.getPokemonInfoFromAPI();
+    this.getVariablesFromPokemon();
   }
 
-  getPokemonInfoFromAPI(): void {
-    this.pokemonService.getPokemonInfo(this.url).subscribe((response) => {
-      this.pokemonResponse = response as PokemonResponse;
-      this.getTypeNamesFromInfo();
-      this.id = String(this.pokemonResponse.id).padStart(3, '0');
-      this.getImageFromInfo();
-      this.name = this.capitalize(this.pokemonResponse.name);
-      this.primaryTypeBgColor = `background-type-${this.types[0]}`;
-      this.primaryTypeImage = `../../assets/types/${this.capitalize(
-        this.types[0]
-      )}.svg`;
-    });
+  getVariablesFromPokemon(): void {
+    if (!this.pokemon) return;
+    this.getTypeNamesFromInfo();
+    this.id = String(this.pokemon.id).padStart(3, '0');
+    this.getImageFromInfo();
+    this.name = this.capitalize(this.pokemon.name);
+    this.primaryTypeBgColor = `background-type-${this.types[0]}`;
+    this.primaryTypeImage = `../../assets/types/${this.capitalize(
+      this.types[0]
+    )}.svg`;
   }
 
   getTypeNamesFromInfo(): void {
-    this.types = this.pokemonResponse.types.map((type: Type) => type.type.name);
+    this.types = this.pokemon.types.map((type: Type) => type.type.name);
   }
 
   getImageFromInfo(): void {
-    const sprites = this.pokemonResponse.sprites;
+    const sprites = this.pokemon.sprites;
     const artWork = sprites.other['official-artwork'];
     this.image = artWork.front_default;
   }

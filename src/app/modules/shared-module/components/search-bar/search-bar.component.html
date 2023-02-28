@@ -4,5 +4,7 @@
     class="search-input"
     type="text"
     placeholder="What pokemon are you looking for?"
+    [(ngModel)]="searchInput"
+    (ngModelChange)="onChange($event)"
   />
 </div>

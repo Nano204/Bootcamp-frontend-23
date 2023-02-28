@@ -7,6 +7,9 @@ import { TypeTagComponent } from './components/type-tag/type-tag.component';
 import { SharedModule } from '../shared-module/shared.modules';
 import { PokemonListPage } from './pages/pokemon-list/pokemon-list-page.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { SearchService } from 'src/app/services/search.service';
+import { SearchBarSectionComponent } from './components/search-bar-section/search-bar-section.component';
+import { GenerationSelectorComponent } from './components/generetions-selector/generation-selector..component';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,11 @@ import { PokemonService } from 'src/app/services/pokemon.service';
     PokemonCardComponent,
     TypeTagComponent,
     PokemonListPage,
+    GenerationSelectorComponent,
+    SearchBarSectionComponent,
   ],
   imports: [BrowserModule, FormsModule, SharedModule],
   exports: [PokemonList, PokemonCardComponent, TypeTagComponent],
-  providers: [PokemonService],
+  providers: [PokemonService, SearchService],
 })
 export class PokemonModule {}

@@ -1,5 +1,5 @@
 <div class="nav-bar">
-  <div class="logo" (click)="onLogoClick()">
+  <div class="logo" (click)="toHome()">
     <img
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSdRKOBteZ27eUR1APw8FistZBxTIv7xIDC8o6Iq-KaYBMif2z1ciouLd49zS3_u3A47k&usqp=CAU"
       alt="pokeball image"
@@ -7,8 +7,6 @@
     <p>Pokedex</p>
   </div>
   <div class="routes">
-    <p>Home</p>
-    <p>Types</p>
-    <p>Generations</p>
+    <p (click)="toHome()">Home</p>
   </div>
 </div>

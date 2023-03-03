@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent {
   constructor(private router: Router) {}
-  onLogoClick() {
+  toHome() {
     this.router.navigate([`/pokemons/`]);
   }
 }

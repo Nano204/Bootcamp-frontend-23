@@ -6,8 +6,9 @@
       *ngFor="let evolution of evolutionChain"
       (click)="goToPokemon(evolution.data.id)"
     >
-      <img [src]="evolution.image" [alt]="evolution.data" />
-      <p>{{ evolution.data.name }}</p>
+      <img [src]="evolution.image" [alt]="evolution.data.name" />
+      <p>#{{ evolution.displayables?.id }}</p>
+      <p>{{ evolution.displayables?.name }}</p>
     </div>
   </div>
 </div>

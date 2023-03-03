@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import {
@@ -14,11 +20,19 @@ import {
 })
 export class PokeEvoScreenerComponent implements OnInit {
   @Input() url!: string;
-  evolutionChain: { data: PokemonResponse; image: string }[] = [];
+  evolutionChain: {
+    data: PokemonResponse;
+    image: string;
+    displayables?: { id?: string; name?: string };
+  }[] = [];
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit(): void {
+    this.setEvolutionChain();
+  }
+
+  setEvolutionChain() {
     this.pokemonService
       .getPokemonEvolutionChain(this.url)
       .subscribe((evolutionItem) => {
@@ -28,12 +42,18 @@ export class PokeEvoScreenerComponent implements OnInit {
           this.pokemonService
             .getPokemonInfo(pokemonId)
             .subscribe((response) => {
-              const image = response.sprites.other['official-artwork'].front_default;
-              this.evolutionChain.push({ data: response, image });
+              const id = String(response.id).padStart(3, '0');
+              const name = this.capitalize(response.name);
+              const image =
+                response.sprites.other['official-artwork'].front_default;
+              this.evolutionChain.push({
+                data: response,
+                image,
+                displayables: { id, name },
+              });
             });
           current = current?.evolves_to ? current.evolves_to[0] : null;
         } while (current?.evolves_to);
-        console.log(this.evolutionChain);
       });
   }
 
@@ -44,6 +64,10 @@ export class PokeEvoScreenerComponent implements OnInit {
     );
     id = id.replace('/', '');
     return Number(id);
+  }
+
+  capitalize(str: string): string {
+    return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
   }
 
   goToPokemon(id: number) {

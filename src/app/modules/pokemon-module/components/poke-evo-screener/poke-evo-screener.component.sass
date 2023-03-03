@@ -10,8 +10,15 @@
         margin-top: 0
     .evolution-container
         display: flex
+        justify-content: space-around
         .evolution
             cursor: pointer
             margin: 5px
+            display: flex
+            flex-direction: column
+            align-items: center
             img
                 max-width: 70px
+            p
+                @include regular-font
+                font-size: 16px

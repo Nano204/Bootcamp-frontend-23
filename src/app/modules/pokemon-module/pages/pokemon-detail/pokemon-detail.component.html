@@ -22,7 +22,9 @@
       <span class="menu-option">Evolutions</span>
     </div>
     <div class="screener">
-      <poke-data-screener></poke-data-screener>
+      <poke-data-screener
+        [description]="pokemonDescription"
+      ></poke-data-screener>
     </div>
   </div>
   <div class="pokemon-image-section" [ngClass]="primaryTypeBgColor">
@@ -31,9 +33,11 @@
     <img class="pokemon-art" [src]="image" [alt]="image" />
     <div class="buttons">
       <button class="previous" (click)="previousPokemon()">
-        Previous #898
+        Previous #{{ previousPokemonDisplayNum }}
       </button>
-      <button class="next" (click)="nextPokemon()">Next #002</button>
+      <button class="next" (click)="nextPokemon()">
+        Next #{{ nextPokemonDisplayNum }}
+      </button>
     </div>
   </div>
 </div>

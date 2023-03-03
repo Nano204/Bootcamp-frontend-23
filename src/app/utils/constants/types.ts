@@ -38,7 +38,7 @@ export type SpecieRequest = {
   };
   flavor_text_entries: {
     flavor_text: string;
-    laguage: Reference;
+    language: Reference;
     version: Reference;
   }[];
 };

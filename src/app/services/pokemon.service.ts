@@ -34,7 +34,7 @@ export class PokemonService {
   }
 
   getPokemonSpeciesInfo(id: number) {
-    const url = `https://pokeapi.co/api/v2/pokemon-specie/${id}`;
+    const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
     return this.http.get(url) as Observable<SpecieRequest>;
   }
 }

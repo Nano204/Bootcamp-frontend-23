@@ -19,7 +19,9 @@ export class PokemonDetailComponent implements OnInit {
   primaryTypeBgColor?: string;
   primaryTypeImage?: string;
   nextPokemonId!: number;
+  nextPokemonDisplayNum!: string;
   previousPokemonId!: number;
+  previousPokemonDisplayNum!: string;
   maxNumPokemon = 1008;
   goBackArrowIconUrl: string =
     '../../../../assets/icons/left-arrow-round-outline-icon.svg';
@@ -56,9 +58,13 @@ export class PokemonDetailComponent implements OnInit {
       this.primaryTypeImage = `../../../../assets/types/${this.capitalize(
         this.types[0]
       )}.svg`;
-      this.nextPokemonId =
-        this.id == this.maxNumPokemon ? this.maxNumPokemon : this.id + 1;
-      this.previousPokemonId = this.id == 0 ? this.maxNumPokemon : this.id - 1;
+      this.nextPokemonId = this.id == this.maxNumPokemon ? 1 : this.id + 1;
+      this.previousPokemonId = this.id == 1 ? this.maxNumPokemon : this.id - 1;
+      this.nextPokemonDisplayNum = String(this.nextPokemonId).padStart(3, '0');
+      this.previousPokemonDisplayNum = String(this.previousPokemonId).padStart(
+        3,
+        '0'
+      );
     });
   }
 
@@ -94,28 +100,22 @@ export class PokemonDetailComponent implements OnInit {
 
   nextPokemon() {
     if (!this.id) return;
-    if (this.id == this.maxNumPokemon) {
-      return this.router.navigate([`/pokemons/${1}`]);
-    }
-    return this.router.navigate([`/pokemons/${this.id + 1}`]);
+    return this.router.navigate([`/pokemons/${this.nextPokemonId}`]);
   }
 
   previousPokemon() {
     if (!this.id) return;
-    if (this.id == 0) {
-      return this.router.navigate([`/pokemons/${this.maxNumPokemon}`]);
-    }
-    return this.router.navigate([`/pokemons/${this.id - 1}`]);
+    return this.router.navigate([`/pokemons/${this.previousPokemonId}`]);
   }
 
   getPokemonDescription() {
     if (!this.id) return;
     this.pokemonService.getPokemonSpeciesInfo(this.id).subscribe((response) => {
-      this.pokemonDescription = response.flavor_text_entries.find((flavor) => {
-        return (
-          flavor.laguage.name == 'en' && flavor.version.name == 'soulsilver'
-        );
-      })?.flavor_text;
+      this.pokemonDescription =
+        response.flavor_text_entries.find((flavor) => {
+          return flavor.language.name == 'en';
+        })?.flavor_text ||
+        'This pokedex does not contain enough info about this pokemon';
     });
   }
 }

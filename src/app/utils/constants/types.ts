@@ -40,5 +40,5 @@ export type SpecieRequest = {
     flavor_text: string;
     laguage: Reference;
     version: Reference;
-  };
+  }[];
 };

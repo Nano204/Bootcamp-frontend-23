@@ -13,7 +13,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     NavBarComponent,
     NotFoundComponent
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [FormsModule],
   exports: [NavBarComponent, SearchBarComponent, NotFoundComponent],
   providers: [SearchService],
 })

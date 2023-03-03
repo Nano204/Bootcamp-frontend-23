@@ -1,11 +1,19 @@
+@import "../../../../utils/mixins"
+@import "../../../../utils/variables"
+
 .pokemon-list
     display: grid
     grid-template-columns: 1fr 1fr 1fr
     justify-items: stretch
+    row-gap: 5px
     margin: 40px 144px
-    overflow: hidden
     .pokemon-card
+        transition: all 0.2s ease-in-out
         margin: 10px 2%
+    .pokemon-card:hover
+        cursor: pointer
+        filter: drop-shadow(5px 5px 5px $text-paragraph)
+        transform: translate(-5px, -5px)
     @media screen and (max-width: 1200px)
         grid-template-columns: 1fr 1fr
     @media screen and (max-width: 920px)

@@ -1,0 +1,25 @@
+@import "../../../../utils/mixins"
+@import "../../../../utils/variables"
+
+.data-screener
+    @include regular-font
+    padding: 15px
+    max-height: 100%
+    .introduction
+        color: $text-title-red
+        font-weight: bold
+        margin-top: 0
+    .description
+        color: $text-paragraph
+    .keyvalue
+        margin-top: 10px
+        color: $text-paragraph
+        display: grid
+        grid-template-columns: 40% 60%
+        .key
+            font-weight: bold
+            columns: 1
+            margin: 5px
+        .value
+            columns: 2
+            margin: 5px

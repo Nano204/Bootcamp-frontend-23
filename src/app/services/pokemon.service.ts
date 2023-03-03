@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PokemonResponse, Reference } from '../utils/constants/types';
+import {
+  PokemonResponse,
+  Reference,
+  SpecieRequest,
+} from '../utils/constants/types';
 
 @Injectable()
 export class PokemonService {
@@ -17,14 +21,20 @@ export class PokemonService {
     return pokemonList as Observable<Reference[]>;
   }
 
-  getPokemonInfo(url: string): Observable<PokemonResponse> {
+  getPokemonInfo(id: number): Observable<PokemonResponse> {
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     return this.http.get(url) as Observable<PokemonResponse>;
   }
 
   getGenerationInfo(generation: number) {
-    const generationInfo = `https://pokeapi.co/api/v2/generation/${generation}`;
-    return this.http.get(generationInfo) as Observable<{
+    const url = `https://pokeapi.co/api/v2/generation/${generation}`;
+    return this.http.get(url) as Observable<{
       pokemon_species: Reference[];
     }>;
+  }
+
+  getPokemonSpeciesInfo(id: number) {
+    const url = `https://pokeapi.co/api/v2/pokemon-specie/${id}`;
+    return this.http.get(url) as Observable<SpecieRequest>;
   }
 }

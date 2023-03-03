@@ -3,6 +3,7 @@
     class="pokemon-card"
     *ngFor="let pokemon of displayablePokemons"
     [pokemon]="pokemon"
+    (click)="onPokemonClick(pokemon)"
   ></pokemon-card>
 </div>
 <div class="not-found" *ngIf="!displayablePokemons.length">

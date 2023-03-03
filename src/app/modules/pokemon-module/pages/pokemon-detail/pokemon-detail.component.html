@@ -1,10 +1,10 @@
 <div class="pokemon-detail">
   <div class="pokemon-info-section">
-    <div class="back-arrow"></div>
+    <div class="back-arrow" (click)="goBack()"></div>
     <div class="number">
       #
       <span>
-        {{ id }}
+        {{ displayNumber }}
       </span>
     </div>
     <p class="name">{{ name }}</p>
@@ -21,15 +21,19 @@
       <span class="menu-option">Stats</span>
       <span class="menu-option">Evolutions</span>
     </div>
-    <div class="screener"></div>
+    <div class="screener">
+      <poke-data-screener></poke-data-screener>
+    </div>
   </div>
   <div class="pokemon-image-section" [ngClass]="primaryTypeBgColor">
     <div class="dots"></div>
     <img class="type-shadow" [src]="primaryTypeImage" alt="" />
     <img class="pokemon-art" [src]="image" [alt]="image" />
     <div class="buttons">
-      <button class="previous">Previous #898</button>
-      <button class="next">Next #002</button>
+      <button class="previous" (click)="previousPokemon()">
+        Previous #898
+      </button>
+      <button class="next" (click)="nextPokemon()">Next #002</button>
     </div>
   </div>
 </div>

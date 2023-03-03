@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { SearchService } from 'src/app/services/search.service';
 import { PokemonResponse, Reference } from 'src/app/utils/constants/types';
@@ -14,7 +15,8 @@ export class PokemonList implements OnInit {
   displayablePokemons: PokemonResponse[] = this.pokemonList;
   constructor(
     private pokemonService: PokemonService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,15 +33,22 @@ export class PokemonList implements OnInit {
       });
   }
 
+  getIdFromPokemonReference(reference: Reference) {
+    let id = reference.url.replace('https://pokeapi.co/api/v2/pokemon/', '');
+    id = id.replace('/', '');
+    return Number(id);
+  }
+
   buildPokemonsFromReferences(): void {
     this.pokemonReferenceList.forEach((reference, index) => {
-      this.getPokemonInfoFromAPI(reference.url, index);
+      const id = this.getIdFromPokemonReference(reference);
+      this.getPokemonInfoFromAPI(id, index);
     });
   }
 
-  getPokemonInfoFromAPI(url: string, index: number) {
+  getPokemonInfoFromAPI(id: number, index: number) {
     this.pokemonService
-      .getPokemonInfo(url)
+      .getPokemonInfo(id)
       .subscribe((response: PokemonResponse) => {
         this.pokemonList[index] = response;
         this.displayablePokemons = this.pokemonList;
@@ -94,5 +103,9 @@ export class PokemonList implements OnInit {
 
   onClearGeneration() {
     this.getPokemonReferencesFromAPI();
+  }
+
+  onPokemonClick(pokemon: PokemonResponse) {
+    this.router.navigate([`/pokemons/${pokemon.id}`]);
   }
 }

@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { PokemonResponse, Type } from 'src/app/utils/constants/types';
 
 @Component({
@@ -22,7 +15,7 @@ export class PokemonCardComponent implements OnInit {
   primaryTypeImage?: string;
   image?: string = '';
   name?: string = '';
-  constructor(private pokemonService: PokemonService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.getVariablesFromPokemon();
@@ -41,10 +34,12 @@ export class PokemonCardComponent implements OnInit {
   }
 
   getTypeNamesFromInfo(): void {
+    if (!this.pokemon) return;
     this.types = this.pokemon.types.map((type: Type) => type.type.name);
   }
 
   getImageFromInfo(): void {
+    if (!this.pokemon) return;
     const sprites = this.pokemon.sprites;
     const artWork = sprites.other['official-artwork'];
     this.image = artWork.front_default;

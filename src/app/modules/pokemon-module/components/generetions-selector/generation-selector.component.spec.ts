@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenerationSelectorComponent } from './generation-selector..component';
+import { GenerationSelectorComponent } from './generation-selector.component';
 
 describe('GenerationSelectorComponent', () => {
   let component: GenerationSelectorComponent;

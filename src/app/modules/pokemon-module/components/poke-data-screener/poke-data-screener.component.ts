@@ -7,4 +7,7 @@ import { Component, Input,  } from '@angular/core';
 })
 export class PokeDataScreenerComponent {
   @Input() description?: string;
+  @Input() displayableWeight?: string;
+  @Input() displayableHeight?: string;
+  @Input() pokemonSpecie?: string;
 }

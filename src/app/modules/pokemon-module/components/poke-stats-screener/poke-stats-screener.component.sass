@@ -1,3 +1,22 @@
 @import "../../../../utils/mixins"
 @import "../../../../utils/variables"
 
+.stats-screener
+    @include regular-font
+    padding: 15px
+    display: flex
+    .keyvalue
+        margin-top: 10px
+        color: $text-paragraph
+        display: grid
+        grid-template-columns: 30% 50% 20%
+        max-width: 100%
+        .key
+            font-weight: bold
+            columns: 1
+            margin: 5px
+        .slider
+            columns: 2
+        .value
+            columns: 3
+            margin: 5px

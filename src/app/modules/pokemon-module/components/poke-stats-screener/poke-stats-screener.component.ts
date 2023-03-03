@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { Component, Input } from '@angular/core';
+import { Stat } from 'src/app/utils/constants/types';
 
 @Component({
   selector: 'poke-stats-screener',
   templateUrl: './poke-stats-screener.component.html',
   styleUrls: ['./poke-stats-screener.component.sass'],
 })
-export class PokeStatsScreenerComponent {}
+export class PokeStatsScreenerComponent {
+  @Input() stats?: Stat[];
+  statsSum?: number;
+}

@@ -1,3 +1,17 @@
 @import "../../../../utils/mixins"
 @import "../../../../utils/variables"
 
+.evo-screener
+    @include regular-font
+    padding: 15px
+    .introduction
+        color: $text-title-red
+        font-weight: bold
+        margin-top: 0
+    .evolution-container
+        display: flex
+        .evolution
+            cursor: pointer
+            margin: 5px
+            img
+                max-width: 70px

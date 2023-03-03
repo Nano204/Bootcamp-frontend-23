@@ -17,14 +17,30 @@
       ></interactive-type-tag>
     </div>
     <div class="menu">
-      <span class="menu-option">Pokedex Data</span>
-      <span class="menu-option">Stats</span>
-      <span class="menu-option">Evolutions</span>
+      <span class="menu-option" (click)="changeScreen('Data')"
+        >Pokedex Data</span
+      >
+      <span class="menu-option" (click)="changeScreen('Stats')">Stats</span>
+      <span class="menu-option" (click)="changeScreen('Evolutions')"
+        >Evolutions</span
+      >
     </div>
     <div class="screener">
       <poke-data-screener
+        *ngIf="screenSelection == 'Data'"
         [description]="pokemonDescription"
+        [displayableWeight]="displayableWeight"
+        [displayableHeight]="displayableHeight"
+        [pokemonSpecie]="pokemonSpecie"
       ></poke-data-screener>
+      <poke-stats-screener
+        *ngIf="screenSelection == 'Stats'"
+        [stats]="pokemonResponse.stats"
+      ></poke-stats-screener>
+      <poke-evo-screener
+        *ngIf="screenSelection == 'Evolutions'"
+        [url]="evolutionChainURL"
+      ></poke-evo-screener>
     </div>
   </div>
   <div class="pokemon-image-section" [ngClass]="primaryTypeBgColor">

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PokeStatsScreenerComponent } from './poke-data-screener.component';
+import { PokeStatsScreenerComponent } from './poke-stats-screener.component';
 
 describe('PokeStatsScreenerComponent', () => {
   let component: PokeStatsScreenerComponent;

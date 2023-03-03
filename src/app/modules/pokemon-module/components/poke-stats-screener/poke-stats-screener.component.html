@@ -1,1 +1,64 @@
-
+<div class="stats-screener">
+  <div class="keyvalue">
+    <p class="key">HP</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[0].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[0].base_stat : "Undefined" }}</p>
+    <p class="key">Attack</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[1].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[1].base_stat : "Undefined" }}</p>
+    <p class="key">Defense</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[2].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[2].base_stat : "Undefined" }}</p>
+    <p class="key">Sp. Atk</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[3].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[3].base_stat : "Undefined" }}</p>
+    <p class="key">Sp. Def</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[4].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[4].base_stat : "Undefined" }}</p>
+    <p class="key">Speed</p>
+    <input
+      class="slider"
+      type="range"
+      min="0"
+      max="300"
+      [value]="stats ? stats[5].base_stat : 'Undefined'"
+      disabled
+    />
+    <p class="value">{{ stats ? stats[5].base_stat : "Undefined" }}</p>
+  </div>
+</div>

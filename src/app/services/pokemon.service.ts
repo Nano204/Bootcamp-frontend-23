@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+  Evolution,
   PokemonResponse,
   Reference,
   SpecieRequest,
@@ -36,5 +37,9 @@ export class PokemonService {
   getPokemonSpeciesInfo(id: number) {
     const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
     return this.http.get(url) as Observable<SpecieRequest>;
+  }
+
+  getPokemonEvolutionChain(url: string) {
+    return this.http.get(url) as Observable<{ chain: Evolution }>;
   }
 }

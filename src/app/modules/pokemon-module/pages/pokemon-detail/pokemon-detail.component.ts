@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { PokemonResponse, Type } from 'src/app/utils/constants/types';
+import { PokemonResponse, Type, Stat } from 'src/app/utils/constants/types';
 @Component({
   selector: 'pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
@@ -27,9 +27,12 @@ export class PokemonDetailComponent implements OnInit {
     '../../../../assets/icons/left-arrow-round-outline-icon.svg';
   screenSelection: string = 'Data';
   pokemonDescription?: string;
+  pokemonSpecie?: string;
+  displayableWeight!: string;
+  displayableHeight!: string;
+  evolutionChainURL!: string;
 
   constructor(
-    private http: HttpClient,
     private elementRef: ElementRef,
     private pokemonService: PokemonService,
     private router: Router,
@@ -40,7 +43,7 @@ export class PokemonDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.getPokemonInfoFromAPI();
-      this.getPokemonDescription();
+      this.getPokemonSpeciesInfo();
     });
     this.insertSGV(this.goBackArrowIconUrl, 'back-arrow');
   }
@@ -65,6 +68,7 @@ export class PokemonDetailComponent implements OnInit {
         3,
         '0'
       );
+      this.setWeightAndHeight();
     });
   }
 
@@ -108,7 +112,7 @@ export class PokemonDetailComponent implements OnInit {
     return this.router.navigate([`/pokemons/${this.previousPokemonId}`]);
   }
 
-  getPokemonDescription() {
+  getPokemonSpeciesInfo() {
     if (!this.id) return;
     this.pokemonService.getPokemonSpeciesInfo(this.id).subscribe((response) => {
       this.pokemonDescription =
@@ -116,6 +120,28 @@ export class PokemonDetailComponent implements OnInit {
           return flavor.language.name == 'en';
         })?.flavor_text ||
         'This pokedex does not contain enough info about this pokemon';
+      this.pokemonSpecie =
+        response.genera.find((gen) => {
+          return gen.language.name == 'en';
+        })?.genus || 'Unavailable';
+      this.evolutionChainURL = response.evolution_chain.url;
     });
+  }
+
+  setWeightAndHeight() {
+    if (!this.id) return;
+    const kgWeight = this.pokemonResponse.weight / 10;
+    const lbsWeight = Math.round(kgWeight * 2.20462 * 10) / 10;
+    this.displayableWeight = `${kgWeight}kg (${lbsWeight}lbs)`;
+    const mHeight = this.pokemonResponse.height / 10;
+    const ftHeight = mHeight * 3.281;
+    const inchHeight = Math.round(((ftHeight % 1) * 3.37008) / 10) * 10;
+    this.displayableHeight = `${mHeight}m (${Math.floor(
+      ftHeight
+    )}'${inchHeight}")`;
+  }
+
+  changeScreen(screen: string) {
+    this.screenSelection = screen;
   }
 }

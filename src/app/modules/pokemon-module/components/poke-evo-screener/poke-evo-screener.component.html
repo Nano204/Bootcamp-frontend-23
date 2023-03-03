@@ -1,1 +1,13 @@
-
+<div class="evo-screener">
+  <p class="introduction">Evolution chart:</p>
+  <div class="evolution-container">
+    <div
+      class="evolution"
+      *ngFor="let evolution of evolutionChain"
+      (click)="goToPokemon(evolution.data.id)"
+    >
+      <img [src]="evolution.image" [alt]="evolution.data" />
+      <p>{{ evolution.data.name }}</p>
+    </div>
+  </div>
+</div>

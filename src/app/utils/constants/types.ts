@@ -33,6 +33,7 @@ export type PokemonResponse = {
 };
 
 export type SpecieRequest = {
+  genera: { genus: string; language: Reference }[];
   evolution_chain: {
     url: string;
   };
@@ -41,4 +42,9 @@ export type SpecieRequest = {
     language: Reference;
     version: Reference;
   }[];
+};
+
+export type Evolution = {
+  evolves_to?: Evolution[];
+  species: Reference;
 };
